@@ -1,7 +1,8 @@
 package com.example.carsprediction.presentation.model
 
-import com.example.carsprediction.domain.model.CleanlinessType
-import com.example.carsprediction.domain.model.DamageType
+import com.example.domain.model.CleanlinessType
+import com.example.domain.model.DamageType
+
 
 data class UiResultPredictLabel(
     val text: String,

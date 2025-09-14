@@ -1,10 +1,10 @@
 package com.example.carsprediction.presentation.viewmodel
 
-import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carsprediction.domain.usecase.UploadPhotoUseCase
 import com.example.carsprediction.presentation.model.PredictionState
+import com.example.domain.model.Photo
+import com.example.domain.usecase.UploadPhotoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,11 +20,11 @@ class LoadPhotoViewModel @Inject constructor(
     private val _state = MutableStateFlow<PredictionState>(PredictionState.Loading)
     val state: StateFlow<PredictionState> get() = _state
 
-    fun startPredict(bitmap: Bitmap) {
+    fun startPredict(photo: Photo) {
         viewModelScope.launch(Dispatchers.IO) {
             _state.value = PredictionState.Loading
             try {
-                val prediction = uploadPhotoUseCase(bitmap)
+                val prediction = uploadPhotoUseCase(photo)
                 _state.value = PredictionState.Success(prediction)
             } catch (e: Exception) {
                 _state.value = PredictionState.Error(e.message ?: "Неизвестная ошибка")

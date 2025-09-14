@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.carsprediction.R
 import com.example.carsprediction.databinding.FragmentLoadPhotoBinding
+import com.example.carsprediction.presentation.extension.toPhoto
 import com.example.carsprediction.presentation.viewmodel.LoadPhotoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -86,7 +87,8 @@ class LoadPhotoFragment : Fragment() {
     }
 
     private fun handleImage(bitmap: Bitmap) {
-        viewModel.startPredict(bitmap)
+        val photo = bitmap.toPhoto()
+        viewModel.startPredict(photo)
         parentFragmentManager.beginTransaction()
             .replace(R.id.main, ResultPredictionFragment.newInstance())
             .addToBackStack(null)

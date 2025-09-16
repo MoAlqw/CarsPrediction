@@ -14,7 +14,7 @@ import kotlin.jvm.java
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://9106ad4761c3.ngrok-free.app"
+    private const val BASE_URL = "https://5b8438d9eef4.ngrok-free.app"
 
     @Provides
     @Singleton
